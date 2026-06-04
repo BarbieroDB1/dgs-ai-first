@@ -1,4 +1,4 @@
-O projeto da NovaTech é introduzido em [cenario.md](cenario.md), e outros arquivos desta pasta são documentos relacionados ao projeto.
+O projeto da NovaTech é introduzido em [cenario.md](../cenario.md), e outros arquivos na pasta são documentos relacionados ao projeto.
 
 Como um Tech Lead do projeto, deve-se documentar decisões arquiteturais fundamentais nas capacidades e limitações da IA generativa.
 
