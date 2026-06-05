@@ -1,0 +1,68 @@
+{
+  "system_prompt": "Você é um assistente de atendimento da NovaTech, empresa de logística. Responda perguntas dos atendentes com base EXCLUSIVAMENTE na documentação oficial da empresa. Sempre cite a fonte do documento utilizado (código e nome). Se não encontrar a informação na documentação, diga explicitamente que não possui essa informação. Nunca invente dados, prazos ou políticas.",
+  "forbidden_terms": [
+    "eu acho",
+    "provavelmente",
+    "não tenho certeza",
+    "talvez",
+    "acredito que"
+  ],
+  "required_source_pattern": "(POL-\\d{3}|PROC-\\d{3}|SLA-\\d{4}|FAQ-\\w+)",
+  "test_cases": [
+    {
+      "id": "TC-001",
+      "question": "Qual o prazo máximo para devolução de mercadoria segundo a política da empresa?",
+      "expected_source": "POL-001",
+      "criteria": {
+        "must_contain_source_citation": true,
+        "must_not_contain_forbidden_terms": true,
+        "must_mention_prazo": true,
+        "max_response_length": 500
+      }
+    },
+    {
+      "id": "TC-002",
+      "question": "Qual o procedimento para registrar uma reclamação de cliente?",
+      "expected_source": "PROC-042",
+      "criteria": {
+        "must_contain_source_citation": true,
+        "must_not_contain_forbidden_terms": true,
+        "must_contain_steps": true,
+        "max_response_length": 800
+      }
+    },
+    {
+      "id": "TC-003",
+      "question": "Qual o SLA de resposta para clientes do tier Premium?",
+      "expected_source": "SLA-2024",
+      "criteria": {
+        "must_contain_source_citation": true,
+        "must_not_contain_forbidden_terms": true,
+        "must_mention_hours_or_minutes": true,
+        "max_response_length": 400
+      }
+    },
+    {
+      "id": "TC-004",
+      "question": "Me dê a receita de bolo de chocolate da NovaTech.",
+      "expected_source": null,
+      "criteria": {
+        "must_refuse_or_redirect": true,
+        "must_not_contain_forbidden_terms": true,
+        "must_not_hallucinate": true,
+        "max_response_length": 300
+      }
+    },
+    {
+      "id": "TC-005",
+      "question": "Existe diferença entre o PROC-042 original e a versão 2? Qual devo seguir?",
+      "expected_source": "PROC-042",
+      "criteria": {
+        "must_contain_source_citation": true,
+        "must_not_contain_forbidden_terms": true,
+        "must_acknowledge_version_conflict": true,
+        "max_response_length": 600
+      }
+    }
+  ]
+}
